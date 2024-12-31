@@ -18,18 +18,19 @@ impl<T: crate::Abomonation> Abomonation for T {
 */
 
 #[inline]
-pub unsafe fn encode<T, W: Write>(typed: &T::Source, write: &mut W) -> IOResult<()>
+pub fn encode<T, W: Write>(typed: &T::Source, write: &mut W) -> IOResult<()>
 where
     T: Abomonation,
 {
     let typed = T::convert(typed);
-    crate::encode(typed, write)
+    unsafe { crate::encode(typed, write) }
 }
 
-pub unsafe fn decode<'a, T>(bytes: &'a mut [u8]) -> Option<(&'a T::Source, &'a mut [u8])>
+#[inline]
+pub fn decode<'a, T>(bytes: &'a mut [u8]) -> Option<(&'a T::Source, &'a mut [u8])>
 where
     T: Abomonation + 'a,
 {
-    let result: (&T, &mut [u8]) = crate::decode::<T>(bytes)?;
+    let result: (&T, &mut [u8]) = unsafe { crate::decode::<T>(bytes)? };
     Some((result.0.convert_back(), result.1))
 }
