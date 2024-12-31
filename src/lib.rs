@@ -43,6 +43,12 @@ use std::num::*;
 
 pub mod abomonated;
 
+// Reexport external API
+mod external;
+pub use external::Abomonation as ExternalAbomonation;
+pub use external::encode as external_encode;
+pub use external::decode as external_decode;
+
 /// Encodes a typed reference into a binary buffer.
 ///
 /// # Safety
