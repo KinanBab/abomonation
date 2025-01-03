@@ -14,3 +14,7 @@ license = "MIT"
 
 [dev-dependencies]
 recycler="0.1.4"
+
+[dependencies]
+memoffset = "0.9.1"
+paste = "1.0.15"
