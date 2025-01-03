@@ -6,6 +6,9 @@ use external::sealed::IdentityDescription;
 extern crate memoffset;
 pub use self::memoffset::offset_of;
 
+extern crate derive;
+pub use self::derive::external_abomoniate;
+
 // Describes a struct field: both its type and its offset in memory.
 pub struct StructDescriptor<T> {
     t: PhantomData<T>,
